@@ -5,7 +5,14 @@ import { useState } from "react";
 const Query = () => {
   //Filtre par continent
   const [filter, setFilter] = useState("");
-  const continents = ["Africa", "America", "Asia", "Europe", "Oceania"];
+  const continents = [
+    "Africa",
+    "Antarctic",
+    "Americas",
+    "Asia",
+    "Europe",
+    "Oceania",
+  ];
 
   //Filtre par nom
   const [sorted, setSorted] = useState(false);
@@ -209,7 +216,7 @@ const Query = () => {
             }
             return 0;
           })
-          .filter((country) => country.continents[0].includes(filter))
+          .filter((country) => country.region.includes(filter))
           .map((country) => (
             <li className="p-4" key={country.name.common}>
               <NavLink className="relative" to={`/countries/${country.cca3}`}>
