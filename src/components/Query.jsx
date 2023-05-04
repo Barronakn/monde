@@ -105,6 +105,17 @@ const Query = () => {
           </li>
         ))}
       </div>
+      {filter && (
+        <div className="flex items-center bg-yellow-500 mt-1 justify-center text-red-600">
+          <input
+            type="submit"
+            value="Annuler le tri par continent"
+            onClick={() => setFilter("")}
+            className="cursor-pointer font-bold uppercase"
+          />
+        </div>
+      )}
+
       <div className="row-2 mx-6 my-2 flex justify-around">
         <li>
           <input
@@ -131,12 +142,32 @@ const Query = () => {
           />
         </li>
       </div>
-      {filter && (
+      {sorted && (
         <div className="flex items-center bg-yellow-500 mt-1 justify-center text-red-600">
           <input
             type="submit"
-            value="Annuler le filtre"
-            onClick={() => setFilter("")}
+            value="Annuler le tri par nom"
+            onClick={() => setSorted("")}
+            className="cursor-pointer font-bold uppercase"
+          />
+        </div>
+      )}
+      {superficie && (
+        <div className="flex items-center bg-yellow-500 mt-1 justify-center text-red-600">
+          <input
+            type="submit"
+            value="Annuler le tri par superficie"
+            onClick={() => setSuperficie("")}
+            className="cursor-pointer font-bold uppercase"
+          />
+        </div>
+      )}
+      {populations && (
+        <div className="flex items-center bg-yellow-500 mt-1 justify-center text-red-600">
+          <input
+            type="submit"
+            value="Annuler le tri par population"
+            onClick={() => setPopulations("")}
             className="cursor-pointer font-bold uppercase"
           />
         </div>
@@ -144,18 +175,6 @@ const Query = () => {
 
       <div className="row-3 m-6 gap-2 flex justify-center">
         <label htmlFor="language-filter">Tirer par langue:</label>
-        {/* <select
-          id="language-filter"
-          value={languageFilter}
-          onChange={(e) => setLanguageFilter(e.target.value)}
-        >
-          <option value="">Toutes les langues</option>
-          {languages.map((lang) => (
-            <option key={lang} value={lang}>
-              {lang}
-            </option>
-          ))}
-        </select> */}
         <select
           id="language"
           value={language}
@@ -169,7 +188,6 @@ const Query = () => {
           ))}
         </select>
       </div>
-
       {language && (
         <div className="flex items-center bg-yellow-500 mt-1 justify-center text-red-600">
           <input
