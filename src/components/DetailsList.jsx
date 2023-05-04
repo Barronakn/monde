@@ -29,7 +29,7 @@ const DetailsList = () => {
 
   return (
     <div className="content text-center h-full">
-      <h1 className="text-center text-4xl p-10">
+      <h1 className="text-center text-4xl p-10 animate">
         Voici quelques détails de ce pays :{" "}
       </h1>
       {data.map((country, index) => (

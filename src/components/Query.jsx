@@ -87,7 +87,9 @@ const Query = () => {
 
   return (
     <div className="content">
-      <h1 className="text-center p-10 text-4xl">Liste des pays du monde </h1>
+      <h1 className="text-center p-10 text-4xl animate">
+        Liste des pays du monde{" "}
+      </h1>
       <div className="row-1 mx-6 flex justify-around">
         {continents.map((continent) => (
           <li key={continent[continent.length]}>

@@ -38,3 +38,8 @@ li {
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
+.animate {
+  animation: flip;
+  animation-duration: 2s;
+}
