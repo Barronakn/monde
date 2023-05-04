@@ -61,7 +61,6 @@ const Query = () => {
   const filteredCountries = data.filter((country) => {
     if (filter !== "") {
       if (country.region !== filter) {
-        console.log(country.region);
         return false;
       }
     }
@@ -71,7 +70,6 @@ const Query = () => {
         return false;
       }
     }
-
     return true;
   });
 
