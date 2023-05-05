@@ -38,6 +38,16 @@
   .content ul {
     grid-template-columns: repeat(4, 1fr);
   }
+
+  .col {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .row-1 input,
+  .row-3 input {
+    width: 288px;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -46,16 +56,16 @@
   }
 }
 
-@media screen and (max-width: 425px) {
-  .row-1,
-  .row-2,
-  .row-3 {
-    flex-wrap: wrap;
-    gap: 20px;
+@media screen and (max-width: 399px) {
+  .row-4,
+  .row-5 {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 425px) {
   .content ul {
     grid-template-columns: repeat(2, 1fr);
   }

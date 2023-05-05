@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import "simple-reveal/index.css";
 
 const Query = () => {
   //Filtre par continent
@@ -15,25 +16,17 @@ const Query = () => {
   ];
 
   //Filtre par nom
-  const [sorted, setSorted] = useState(false);
-  const handleSort = () => {
-    setSorted(!sorted);
-  };
+  const [sorted, setSorted] = useState("");
 
   //Filtre par languages
   const [language, setLanguage] = useState("");
 
   //Filtre par population
-  const [populations, setPopulations] = useState(false);
-  const handlePopulation = () => {
-    setPopulations(!populations);
-  };
-
+  const minPopulation = 0;
+  const [populations, setPopulations] = useState(1000000000);
   //Filtre par superficie
-  const [superficie, setSuperficie] = useState(false);
-  const handleSuperficie = () => {
-    setSuperficie(!superficie);
-  };
+  const minSuperficie = 0;
+  const [superficie, setSuperficie] = useState(10000000);
 
   //Gestion de l'Api
   const { data, isLoading, isError, error } = useQuery(
@@ -49,6 +42,21 @@ const Query = () => {
       return data;
     }
   );
+
+  //Infinite scroll
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  const perPage = 30;
+  const [page, setPage] = useState(1);
+
+  const handleScroll = () => {
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
+      setPage((page) => page + 1);
+    }
+  };
 
   if (isLoading) {
     return <p className="load">En cours de chargement...</p>;
@@ -90,90 +98,60 @@ const Query = () => {
       <h1 className="text-center p-10 text-4xl animate">
         Liste des pays du monde{" "}
       </h1>
-      <div className="row-1 mx-6 flex justify-around">
-        {continents.map((continent) => (
-          <li key={continent[continent.length]}>
+
+      <div className="col flex justify-around">
+        <div className="row-1 mx-6 my-2">
+          <li className="flex flex-col">
+            <label htmlFor="superficie">Tri par superficie</label>
             <input
-              className="cursor-pointer"
-              type="radio"
-              name="country"
-              checked={continent === filter}
-              id={continent}
-              onChange={(e) => setFilter(e.target.id)}
+              type="range"
+              defaultValue={superficie}
+              onChange={(e) => setSuperficie(e.target.value)}
+              min="0"
+              max="10000000"
             />
-            <label htmlFor={continent}> {continent} </label>
           </li>
-        ))}
+        </div>
+        <div className="row-2 mx-6 my-2">
+          <input
+            className="rounded-2xl p-1 w-72"
+            type="search"
+            placeholder="Trier par nom"
+            value={sorted}
+            onChange={(e) => setSorted(e.target.value)}
+          />
+        </div>
+        <div className="row-3 mx-6 my-2">
+          <li className="flex flex-col">
+            <label htmlFor="population">Tri par nombre de population</label>
+            <input
+              type="range"
+              defaultValue={populations}
+              onChange={(e) => setPopulations(e.target.value)}
+              min="0"
+              max="1000000000"
+            />
+          </li>
+        </div>
       </div>
-      {filter && (
-        <div className="flex items-center bg-yellow-500 mt-1 justify-center text-red-600">
-          <input
-            type="submit"
-            value="Annuler le tri par continent"
-            onClick={() => setFilter("")}
-            className="cursor-pointer font-bold uppercase"
-          />
-        </div>
-      )}
 
-      <div className="row-2 mx-6 my-2 flex justify-around">
-        <li>
-          <input
-            type="submit"
-            value={sorted ? "Trier de A à Z" : "Trier de Z à A"}
-            onClick={handleSort}
-            className="bg-black text-white px-2 py-1 rounded-2xl cursor-pointer font-bold"
-          />
-        </li>
-        <li>
-          <input
-            type="submit"
-            value={populations ? "Plus peuplés" : "Moins peuplés"}
-            onClick={handlePopulation}
-            className="bg-black text-white px-2 py-1 rounded-2xl cursor-pointer font-bold"
-          />
-        </li>
-        <li>
-          <input
-            type="submit"
-            value={superficie ? "Plus vaste" : "Moins vaste"}
-            onClick={handleSuperficie}
-            className="bg-black text-white px-2 py-1 rounded-2xl cursor-pointer font-bold"
-          />
-        </li>
+      <div className="row-4 m-6 gap-2 flex justify-center">
+        <label htmlFor="continent-filter">Tirer par continent:</label>
+        <select onChange={(e) => setFilter(e.target.value)}>
+          <option value="">Tous les continents</option>
+          {continents.map((continent) => (
+            <option
+              className="cursor-pointer"
+              value={continent}
+              key={continent}
+            >
+              {continent}
+            </option>
+          ))}
+        </select>
       </div>
-      {sorted && (
-        <div className="flex items-center bg-yellow-500 mt-1 justify-center text-red-600">
-          <input
-            type="submit"
-            value="Annuler le tri par nom"
-            onClick={() => setSorted("")}
-            className="cursor-pointer font-bold uppercase"
-          />
-        </div>
-      )}
-      {superficie && (
-        <div className="flex items-center bg-yellow-500 mt-1 justify-center text-red-600">
-          <input
-            type="submit"
-            value="Annuler le tri par superficie"
-            onClick={() => setSuperficie("")}
-            className="cursor-pointer font-bold uppercase"
-          />
-        </div>
-      )}
-      {populations && (
-        <div className="flex items-center bg-yellow-500 mt-1 justify-center text-red-600">
-          <input
-            type="submit"
-            value="Annuler le tri par population"
-            onClick={() => setPopulations("")}
-            className="cursor-pointer font-bold uppercase"
-          />
-        </div>
-      )}
 
-      <div className="row-3 m-6 gap-2 flex justify-center">
+      <div className="row-5 m-6 gap-2 flex justify-center">
         <label htmlFor="language-filter">Tirer par langue:</label>
         <select
           id="language"
@@ -199,44 +177,21 @@ const Query = () => {
         </div>
       )}
 
-      <ul className="mx-6">
+      <ul className="px-10">
         {filteredCountries
-          .sort((a, b) => {
-            if (a.name.common < b.name.common) {
-              return sorted ? 1 : -1;
-            }
-            if (a.name.common > b.name.common) {
-              return sorted ? -1 : 1;
-            }
-            return 0;
-          })
-          .sort((a, b) => {
-            if (!populations) {
-              return 0;
-            }
-            if (a.population < b.population) {
-              return populations ? 1 : -1;
-            }
-            if (a.population > b.population) {
-              return populations ? -1 : 1;
-            }
-            return 0;
-          })
-          .sort((a, b) => {
-            if (!superficie) {
-              return 0;
-            }
-            if (a.area < b.area) {
-              return superficie ? 1 : -1;
-            }
-            if (a.area > b.area) {
-              return superficie ? -1 : 1;
-            }
-            return 0;
-          })
+          .filter((country) => country.name.common.includes(sorted))
           .filter((country) => country.region.includes(filter))
+          .filter((country) => {
+            const superficies = country.area;
+            return superficies >= minSuperficie && superficies <= superficie;
+          })
+          .filter((country) => {
+            const population = country.population;
+            return population >= minPopulation && population <= populations;
+          })
+          .slice(0, perPage * page)
           .map((country) => (
-            <li className="p-4" key={country.name.common}>
+            <li id="liste" className=" p-6" key={country.name.common}>
               <NavLink className="relative" to={`/countries/${country.cca3}`}>
                 <img
                   className="w-40 h-20 hover:shadow-2xl"
