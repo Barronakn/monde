@@ -166,16 +166,6 @@ const Query = () => {
           ))}
         </select>
       </div>
-      {language && (
-        <div className="flex items-center bg-yellow-500 mt-1 justify-center text-red-600">
-          <input
-            type="submit"
-            value="Annuler le filtre par langue"
-            onClick={() => setLanguage("")}
-            className="cursor-pointer font-bold uppercase"
-          />
-        </div>
-      )}
 
       <ul className="px-10">
         {filteredCountries
