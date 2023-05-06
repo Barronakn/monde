@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "simple-reveal/index.css";
+import ArrowTop from "../assets/arrow-top.svg";
 
 const Query = () => {
   //Filtre par continent
@@ -24,6 +25,7 @@ const Query = () => {
   //Filtre par population
   const minPopulation = 0;
   const [populations, setPopulations] = useState(1000000000);
+
   //Filtre par superficie
   const minSuperficie = 0;
   const [superficie, setSuperficie] = useState(10000000);
@@ -57,6 +59,22 @@ const Query = () => {
       setPage((page) => page + 1);
     }
   };
+
+  // Remonte en haut de la page au clic sur le bouton
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+    });
+  };
+
+  const [visible, setVisible] = useState(false);
+  window.addEventListener("scroll", () => {
+    if (window.pageYOffset > 300) {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
+  });
 
   if (isLoading) {
     return <p className="load">En cours de chargement...</p>;
@@ -104,6 +122,7 @@ const Query = () => {
           <li className="flex flex-col">
             <label htmlFor="superficie">Tri par superficie</label>
             <input
+              className="cursor-pointer"
               type="range"
               defaultValue={superficie}
               onChange={(e) => setSuperficie(e.target.value)}
@@ -125,6 +144,7 @@ const Query = () => {
           <li className="flex flex-col">
             <label htmlFor="population">Tri par nombre de population</label>
             <input
+              className="cursor-pointer"
               type="range"
               defaultValue={populations}
               onChange={(e) => setPopulations(e.target.value)}
@@ -137,8 +157,13 @@ const Query = () => {
 
       <div className="row-4 m-6 gap-2 flex justify-center">
         <label htmlFor="continent-filter">Tirer par continent:</label>
-        <select onChange={(e) => setFilter(e.target.value)}>
-          <option value="">Tous les continents</option>
+        <select
+          className="cursor-pointer"
+          onChange={(e) => setFilter(e.target.value)}
+        >
+          <option className="cursor-pointer" value="">
+            Tous les continents
+          </option>
           {continents.map((continent) => (
             <option
               className="cursor-pointer"
@@ -154,13 +179,16 @@ const Query = () => {
       <div className="row-5 m-6 gap-2 flex justify-center">
         <label htmlFor="language-filter">Tirer par langue:</label>
         <select
+          className="cursor-pointer"
           id="language"
           value={language}
           onChange={(e) => setLanguage(e.target.value)}
         >
-          <option value="">Toutes les langues</option>
+          <option className="cursor-pointer" value="">
+            Toutes les langues
+          </option>
           {languages.map((lang) => (
-            <option key={lang} value={lang}>
+            <option className="cursor-pointer" key={lang} value={lang}>
               {lang}
             </option>
           ))}
@@ -199,6 +227,14 @@ const Query = () => {
             </li>
           ))}
       </ul>
+      {visible && (
+        <img
+          className="arrow w-10 h-12 bg-white cursor-pointer z-50 fixed bottom-0 right-0"
+          src={ArrowTop}
+          onClick={scrollToTop}
+          alt="arrow_top"
+        />
+      )}
     </div>
   );
 };
