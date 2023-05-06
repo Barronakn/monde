@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { useQuery } from "react-query";
 
 const DetailsList = () => {
@@ -62,7 +62,10 @@ const DetailsList = () => {
               alt={"Drapeau de l'amoirie :" + country.name.common}
             />
           </div>
-          <table>
+          <NavLink className="back" to="/">
+            Home
+          </NavLink>
+          <table className="mt-6">
             <thead>
               <tr>
                 <th colSpan="2">Voici quelques détails de ce pays</th>

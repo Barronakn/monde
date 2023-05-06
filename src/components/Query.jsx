@@ -24,11 +24,13 @@ const Query = () => {
 
   //Filtre par population
   const minPopulation = 0;
-  const [populations, setPopulations] = useState(1000000000);
+  const maxPopulation = 1425893465;
+  const [populations, setPopulations] = useState(1425893465);
 
   //Filtre par superficie
   const minSuperficie = 0;
-  const [superficie, setSuperficie] = useState(10000000);
+  const maxSuperficie = 17098300;
+  const [superficie, setSuperficie] = useState(17098300);
 
   //Gestion de l'Api
   const { data, isLoading, isError, error } = useQuery(
@@ -113,23 +115,29 @@ const Query = () => {
 
   return (
     <div className="content">
-      <h1 className="text-center p-10 text-4xl animate">
-        Liste des pays du monde{" "}
+      <h1 className="text-center font-bold p-10 text-4xl animate">
+        Liste des pays du monde
       </h1>
 
       <div className="col flex justify-around">
         <div className="row-1 mx-6 my-2">
           <li className="flex flex-col">
             <label htmlFor="superficie">Tri par superficie</label>
+            <p className="flex justify-between">
+              <span>{minSuperficie}</span>
+              <span>{maxSuperficie}</span>
+            </p>
             <input
               className="cursor-pointer"
               type="range"
               defaultValue={superficie}
               onChange={(e) => setSuperficie(e.target.value)}
               min="0"
-              max="10000000"
+              max="17098300"
+              step="100"
             />
           </li>
+          <p className="text-center">{superficie}</p>
         </div>
         <div className="row-2 mx-6 my-2">
           <input
@@ -143,15 +151,21 @@ const Query = () => {
         <div className="row-3 mx-6 my-2">
           <li className="flex flex-col">
             <label htmlFor="population">Tri par nombre de population</label>
+            <p className="flex justify-between">
+              <span>{minPopulation}</span>
+              <span>{maxPopulation}</span>
+            </p>
             <input
               className="cursor-pointer"
               type="range"
               defaultValue={populations}
               onChange={(e) => setPopulations(e.target.value)}
               min="0"
-              max="1000000000"
+              max="1425893465"
+              step="100"
             />
           </li>
+          <p className="text-center">{populations}</p>
         </div>
       </div>
 
@@ -197,7 +211,9 @@ const Query = () => {
 
       <ul className="px-10">
         {filteredCountries
-          .filter((country) => country.name.common.includes(sorted))
+          .filter((country) =>
+            country.name.common.toLowerCase().includes(sorted.toLowerCase())
+          )
           .filter((country) => country.region.includes(filter))
           .filter((country) => {
             const superficies = country.area;
@@ -217,9 +233,6 @@ const Query = () => {
                   alt={"Drapeau du " + country.name.common}
                   loading="lazy"
                 />
-                <span className="absolute top-0 flex font-bold">
-                  {country.name.common}
-                </span>
               </NavLink>
               <NavLink className="code" to={`/countries/${country.cca3}`}>
                 {country.cca3}

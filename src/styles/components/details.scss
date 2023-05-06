@@ -3,6 +3,18 @@
   align-items: center;
 }
 
+.back {
+  color: #000;
+  background-color: rgb(0, 255, 251);
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.back:hover {
+  background-color: #000;
+  color: rgb(0, 255, 251);
+}
+
 table {
   margin: 0 auto;
 }
