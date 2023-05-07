@@ -36,11 +36,6 @@ const DetailsList = () => {
     return currencies.join(", ");
   };
 
-  //Code pays
-  // function getCountryCallingCode(country) {
-  //   return country?.callingCodes[0];
-  // }
-
   return (
     <div className="content text-center h-full my-10">
       {data.map((country, index) => (
@@ -48,9 +43,9 @@ const DetailsList = () => {
           <div className="flex p-5">
             <img
               className="w-20 h-16"
+              loading="lazy"
               src={country.flags.png}
               alt={"Drapeau du " + country.name.common}
-              loading="lazy"
             />
             <h1 className="text-center text-4xl animate">
               {country.name.common}

@@ -48,13 +48,14 @@ const Query = () => {
   );
 
   //Infinite scroll
+  const perPage = 30;
+  const [page, setPage] = useState(1);
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  const perPage = 30;
-  const [page, setPage] = useState(1);
 
   const handleScroll = () => {
     if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
@@ -229,9 +230,9 @@ const Query = () => {
               <NavLink className="relative" to={`/countries/${country.cca3}`}>
                 <img
                   className="w-40 h-20 hover:shadow-2xl"
+                  loading="lazy"
                   src={country.flags.png}
                   alt={"Drapeau du " + country.name.common}
-                  loading="lazy"
                 />
               </NavLink>
               <NavLink className="code" to={`/countries/${country.cca3}`}>
