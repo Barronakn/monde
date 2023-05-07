@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 
 const DetailsList = () => {
   const { countryCode } = useParams(); // Récupérez l'identifiant du pays depuis l'URL
-  const { isLoading, isError, error, data } = useQuery("country", async () => {
+  const { isError, error, data } = useQuery("country", async () => {
     const response = await fetch(
       `https://restcountries.com/v3.1/alpha/${countryCode}`
     );
@@ -15,10 +15,6 @@ const DetailsList = () => {
     const data = await response.json();
     return data;
   });
-
-  if (isLoading) {
-    return <p className="load">En cours de chargement...</p>;
-  }
 
   if (isError) {
     return <p>{error.message}</p>;

@@ -33,16 +33,19 @@ const Query = () => {
   const [superficie, setSuperficie] = useState(17098300);
 
   //Gestion de l'Api
-  const { data, isError, error } = useQuery("countries", async () => {
-    const response = await fetch("https://restcountries.com/v3.1/all");
-    if (!response.ok) {
-      throw new Error(
-        "Une erreur s'est produite lors de la récupération des données."
-      );
+  const { data, isLoading, isError, error } = useQuery(
+    "countries",
+    async () => {
+      const response = await fetch("https://restcountries.com/v3.1/all");
+      if (!response.ok) {
+        throw new Error(
+          "Une erreur s'est produite lors de la récupération des données."
+        );
+      }
+      const data = await response.json();
+      return data;
     }
-    const data = await response.json();
-    return data;
-  });
+  );
 
   //Infinite scroll
   const perPage = 30;
@@ -75,6 +78,10 @@ const Query = () => {
       setVisible(false);
     }
   });
+
+  if (isLoading) {
+    return <p className="load">En cours de chargement...</p>;
+  }
 
   if (isError) {
     return <p>{error.message}</p>;
