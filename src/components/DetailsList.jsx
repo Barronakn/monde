@@ -28,13 +28,13 @@ const DetailsList = () => {
   }
 
   //Monnaie utilisée
-  const getCurrencies = (country) => {
-    const currencyArray = Object.keys(country.currencies);
-    const currencies = currencyArray.map((currency) => {
-      return country.currencies[currency].name;
-    });
-    return currencies.join(", ");
-  };
+  // const getCurrencies = (country) => {
+  //   const currencyArray = Object.keys(country.currencies);
+  //   const currencies = currencyArray.map((currency) => {
+  //     return country.currencies[currency].name;
+  //   });
+  //   return currencies.join(", ");
+  // };
 
   return (
     <div className="content text-center h-full my-10">
@@ -115,10 +115,10 @@ const DetailsList = () => {
                 <td>Superficie</td>
                 <td>{country.area + " km²"}</td>
               </tr>
-              <tr>
+              {/* <tr>
                 <td>Monnaie utilisée</td>
                 <td>{getCurrencies(country)}</td>
-              </tr>
+              </tr> */}
               <tr>
                 <td>Langues officielles</td>
                 <td>{Object.values(country.languages).join(", ")}</td>
