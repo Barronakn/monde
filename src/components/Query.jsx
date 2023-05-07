@@ -227,7 +227,7 @@ const Query = () => {
           .slice(0, perPage * page)
           .map((country) => (
             <li id="liste" className=" p-6" key={country.name.common}>
-              <NavLink className="relative" to={`/countries/${country.cca3}`}>
+              <NavLink className="relative" to={`/${country.cca3}`}>
                 <img
                   className="w-40 h-20 hover:shadow-2xl"
                   loading="lazy"
@@ -235,7 +235,7 @@ const Query = () => {
                   alt={"Drapeau du " + country.name.common}
                 />
               </NavLink>
-              <NavLink className="code" to={`/countries/${country.cca3}`}>
+              <NavLink className="code" to={`/${country.cca3}`}>
                 {country.cca3}
               </NavLink>
             </li>
