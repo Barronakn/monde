@@ -71,7 +71,7 @@ const Query = () => {
 
   const [visible, setVisible] = useState(false);
   window.addEventListener("scroll", () => {
-    if (window.pageYOffset > 300) {
+    if (window.scrollY > 300) {
       setVisible(true);
     } else {
       setVisible(false);

@@ -34,7 +34,7 @@ li {
 
 .load {
   position: absolute;
-  left: 60%;
+  left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
@@ -46,4 +46,10 @@ li {
 
 img {
   object-fit: cover;
+}
+
+@media screen and (max-width: 425px) {
+  .load {
+    left: 60%;
+  }
 }
