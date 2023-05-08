@@ -323,7 +323,7 @@ const Query = () => {
       </div>
       {visible && (
         <img
-          className="arrow w-10 h-10 p-2 cursor-pointer z-50 fixed bottom-20 right-0"
+          className="arrow w-10 h-10 px-2 cursor-pointer z-50 fixed bottom-20 right-0"
           src={ArrowTop}
           onClick={scrollToTop}
           alt="arrow_top"
