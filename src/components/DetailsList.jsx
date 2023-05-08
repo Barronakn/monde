@@ -67,7 +67,7 @@ const DetailsList = () => {
                 <th colSpan="2">Voici quelques détails de ce pays</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-black">
               <tr>
                 <td>Nom officiel</td>
                 <td>{country.name.official}</td>
