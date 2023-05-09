@@ -77,7 +77,7 @@ const Query = () => {
   //   };
   // }, []);
 
-  // let top = document.querySelector("main");
+  // let top = document.querySelector("section");
   // console.log(top);
   // const filterTop = top.classList.add("top");
   // const navbarStyle = {
@@ -157,7 +157,7 @@ const Query = () => {
       </h1>
 
       <div className="cadre flex relative">
-        <main
+        <section
           // style={navbarStyle}
           className="filter py-4 left-3 top-32 w-72 fixed z-30"
         >
@@ -310,7 +310,7 @@ const Query = () => {
               )}
             </div>
           </div>
-        </main>
+        </section>
 
         <ul className="pays px-10 color absolute left-72 top-32 z-0">
           {filteredCountries
