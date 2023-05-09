@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import "simple-reveal/index.css";
 import ArrowTop from "../assets/arrow-top.svg";
 import ArrowDown from "../assets/down-arrow.svg";
+import { document } from "postcss";
 
 const Query = () => {
   //ToogleContinent
@@ -57,6 +58,31 @@ const Query = () => {
       return data;
     }
   );
+
+  //ScrollFiltre
+
+  // const [scrollPosition, setScrollPosition] = useState(0);
+
+  // const handleScrollFiltre = () => {
+  //   const position = window.scrollY;
+
+  //   setScrollPosition(position);
+  // };
+
+  // useEffect(() => {
+  //   window.addEventListener("scroll", handleScrollFiltre);
+
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScrollFiltre);
+  //   };
+  // }, []);
+
+  // let top = document.querySelector("main");
+  // console.log(top);
+  // const filterTop = top.classList.add("top");
+  // const navbarStyle = {
+  //   display: scrollPosition > 0 ? filterTop : "",
+  // };
 
   //Infinite scroll
   const perPage = 30;
@@ -130,8 +156,11 @@ const Query = () => {
         Liste des pays du monde
       </h1>
 
-      <div className="flex relative">
-        <div className="filter py-4 left-3 top-32 w-72 fixed z-30">
+      <div className="cadre flex relative">
+        <main
+          // style={navbarStyle}
+          className="filter py-4 left-3 top-32 w-72 fixed z-30"
+        >
           <div className="col-1">
             <div className="row-1 mx-6 my-2">
               <li className="flex flex-col">
@@ -153,15 +182,6 @@ const Query = () => {
               <p className="text-center text-sm">{superficie}</p>
             </div>
             <div className="row-2 mx-6 my-2">
-              <input
-                className="rounded-2xl py-2 pl-4 border-input"
-                type="search"
-                placeholder="Trouver un pays"
-                value={sorted}
-                onChange={(e) => setSorted(e.target.value)}
-              />
-            </div>
-            <div className="row-3 mx-6 my-2">
               <li className="flex flex-col">
                 <label htmlFor="population">Populations</label>
                 <p className="flex text-sm justify-between">
@@ -179,6 +199,15 @@ const Query = () => {
                 />
               </li>
               <p className="text-center text-sm">{populations}</p>
+            </div>
+            <div className="row-3 text-center my-4">
+              <input
+                className="rounded-2xl py-2 pl-4 border-input"
+                type="search"
+                placeholder="Trouver un pays"
+                value={sorted}
+                onChange={(e) => setSorted(e.target.value)}
+              />
             </div>
           </div>
           <div className="col-2 flex flex-col gap-5">
@@ -232,12 +261,14 @@ const Query = () => {
             </div>
             <div className="row-5 select text-center w-56">
               <div
-                onClick={() => setToogleLang(!toogleLang)}
+                onClick={() => {
+                  setToogleLang(!toogleLang);
+                }}
                 className="select-btn bg-gray-300 rounded-xl p-2 flex justify-between cursor-pointer"
               >
                 <span>Langues</span>
                 <img
-                  className="w-4 h-8 -mt-2"
+                  className="arrowdown w-4 h-8 -mt-2"
                   src={ArrowDown}
                   alt="arrowDown"
                 />
@@ -279,9 +310,9 @@ const Query = () => {
               )}
             </div>
           </div>
-        </div>
+        </main>
 
-        <ul className="px-10 color absolute left-72 top-32 z-0">
+        <ul className="pays px-10 color absolute left-72 top-32 z-0">
           {filteredCountries
             .filter((country) =>
               country.name.common.toLowerCase().includes(sorted.toLowerCase())
