@@ -40,6 +40,23 @@ $myColor: blue;
   background-color: blue;
 }
 
+.btnFilter {
+  position: fixed;
+  top: 80px;
+  display: none;
+  margin: 0 auto;
+  border: 1px solid blue;
+  color: #000;
+  border-radius: 25px;
+  padding: 5px;
+  margin-top: 15px;
+  background-color: rgb(249, 249, 249);
+}
+
+.btnFilter:hover {
+  background-color: rgba(0, 0, 255, 0.1);
+}
+
 .overflow-y-auto::-webkit-scrollbar {
   width: 8px;
   background-color: rgba(0, 0, 255, 0.2);
@@ -98,6 +115,19 @@ $myColor: blue;
   }
 }
 
+@media screen and (min-width: 1700px) {
+  .content h1 {
+    left: 0;
+  }
+  .content .pays {
+    left: 550px;
+  }
+
+  .filter {
+    left: 250px;
+  }
+}
+
 @media screen and (max-width: 1200px) {
   .content .pays {
     grid-template-columns: repeat(5, 1fr);
@@ -118,12 +148,13 @@ $myColor: blue;
     flex-direction: column;
   }
   .content .pays {
-    top: 300px;
+    top: 100px;
     left: 0;
     grid-template-columns: repeat(5, 1fr);
   }
   .content .filter {
     flex-direction: column;
+    top: 150px;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -131,9 +162,13 @@ $myColor: blue;
     width: 88%;
   }
 
-  // .top {
-  //   top: 0;
-  // }
+  .none {
+    display: none;
+  }
+
+  .btnFilter {
+    display: block;
+  }
 
   .content .filter .col-1 {
     display: flex;
@@ -143,12 +178,18 @@ $myColor: blue;
   }
   .content h1 {
     position: relative;
+    font-size: 30px;
+    padding: 20px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .content .pays {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  .drop {
+    display: none;
   }
 
   .col-1 {
