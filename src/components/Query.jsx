@@ -370,6 +370,7 @@ const Query = () => {
                     />
                   </div>
                   <div className="flex flex-col mt-2 max-h-24 overflow-y-auto">
+                    <button onClick={() => setFilter("")}>Réinitialiser</button>
                     {continents
                       .filter((continent) =>
                         continent
@@ -420,6 +421,9 @@ const Query = () => {
                     />
                   </div>
                   <div className="flex flex-col mt-2 max-h-32 overflow-y-auto">
+                    <button onClick={() => setLanguage("")}>
+                      Réinitialiser
+                    </button>
                     {languages
                       .filter((language) =>
                         language
