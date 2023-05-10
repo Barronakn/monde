@@ -33,7 +33,7 @@ const Query = () => {
   const [sorted, setSorted] = useState("");
 
   //Filtre par languages
-  const [language, setLanguage] = useState("");
+  const [lang, setLang] = useState("");
 
   //Filtre par population
   const minPopulation = 0;
@@ -107,24 +107,26 @@ const Query = () => {
       }
     }
 
-    if (language !== "") {
-      if (!Object.values(country.languages || {}).includes(language)) {
+    if (lang !== "") {
+      if (!Object.values(country.languages || {}).includes(lang)) {
         return false;
       }
     }
     return true;
   });
 
-  const languages = [
-    ...new Set(
-      filteredCountries.flatMap((country) => {
-        const countryLanguages = country.languages
-          ? Object.values(country.languages)
-          : [];
-        return countryLanguages;
-      })
-    ),
-  ];
+  const languages = data.reduce((languages, country) => {
+    if (country.languages) {
+      Object.values(country.languages).forEach((language) => {
+        if (!languages.includes(language)) {
+          languages.push(language);
+        }
+      });
+    }
+    return languages;
+  }, []);
+
+  languages.sort();
 
   return (
     <div className="content">
@@ -281,7 +283,7 @@ const Query = () => {
                           >
                             <li
                               id={language}
-                              onClick={(e) => setLanguage(e.target.id)}
+                              onClick={(e) => setLang(e.target.id)}
                               className="p-1"
                             >
                               {language}
@@ -345,8 +347,8 @@ const Query = () => {
               />
             </div>
           </div>
-          <div className="col-2 flex flex-col gap-5">
-            <div className="row-4 mb-20 select text-center w-56">
+          <div className="col-2 flex flex-col gap-3">
+            <div className="row-4 select text-center w-56">
               <div
                 onClick={() => setToogle(!toogle)}
                 className="select-btn bg-gray-300 rounded-xl p-2 flex justify-between cursor-pointer"
@@ -421,9 +423,7 @@ const Query = () => {
                     />
                   </div>
                   <div className="flex flex-col mt-2 max-h-32 overflow-y-auto">
-                    <button onClick={() => setLanguage("")}>
-                      Réinitialiser
-                    </button>
+                    <button onClick={() => setLang("")}>Réinitialiser</button>
                     {languages
                       .filter((language) =>
                         language
@@ -437,7 +437,7 @@ const Query = () => {
                         >
                           <li
                             id={language}
-                            onClick={(e) => setLanguage(e.target.id)}
+                            onClick={(e) => setLang(e.target.id)}
                             className="p-1"
                           >
                             {language}
