@@ -263,6 +263,35 @@ $myColor: blue;
   }
 }
 
+@media screen and (max-width: 425px) {
+  .content .filter {
+    padding: 5px;
+  }
+  .content .row-5,
+  .content .row-4 {
+    width: 100px;
+  }
+  .content .row-5 input,
+  .content .row-4 input {
+    width: 90px;
+  }
+  .content .row-3 input {
+    height: 30px;
+  }
+  .content .row-5 input::placeholder,
+  .content .row-4 input::placeholder {
+    font-size: 12px;
+  }
+  .content .select-btn span {
+    font-size: 14px;
+  }
+  .content .select-btn img {
+    width: 20px;
+    height: 20px;
+    margin-top: 1px;
+  }
+}
+
 @media screen and (max-width: 375px) {
   .content .pays img {
     object-fit: contain;

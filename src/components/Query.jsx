@@ -194,8 +194,8 @@ const Query = () => {
                 />
               </div>
             </div>
-            <div className="col-2 flex flex-col gap-5">
-              <div className="row-4 mb-20 select text-center w-56">
+            <div className="col-2 flex flex-col gap-3">
+              <div className="row-4 select text-center w-56">
                 <div
                   onClick={() => setToogle(!toogle)}
                   className="select-btn bg-gray-300 rounded-xl p-2 flex justify-between cursor-pointer"
@@ -219,6 +219,9 @@ const Query = () => {
                       />
                     </div>
                     <div className="flex flex-col mt-2 max-h-24 overflow-y-auto">
+                      <button onClick={() => setFilter("")}>
+                        Réinitialiser
+                      </button>
                       {continents
                         .filter((continent) =>
                           continent
@@ -269,6 +272,7 @@ const Query = () => {
                       />
                     </div>
                     <div className="flex flex-col mt-2 max-h-32 overflow-y-auto">
+                      <button onClick={() => setLang("")}>Réinitialiser</button>
                       {languages
                         .filter((language) =>
                           language
