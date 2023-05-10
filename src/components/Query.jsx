@@ -66,7 +66,6 @@ const Query = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -143,9 +142,9 @@ const Query = () => {
             : "Cliquez ici pour afficher le filtre"}
         </button>
       </div>
-      <div className="cadre flex relative">
+      <div className="cadre flex relative justify-center items-center">
         {handleClick && (
-          <section className="filter py-4 left-3 top-32 w-72 fixed z-30">
+          <section className="filter py-4 left-12 top-32 w-72 fixed z-30">
             <div className="col-1">
               <div className="row-1 mx-6 my-2">
                 <li className="flex flex-col">
@@ -297,7 +296,7 @@ const Query = () => {
             </div>
           </section>
         )}
-        <section className="filter none py-4 left-3 top-32 w-72 fixed z-30">
+        <section className="filter none py-4 left-12 top-32 w-72 fixed z-30">
           <div className="col-1">
             <div className="row-1 mx-6 my-2">
               <li className="flex flex-col">
@@ -450,7 +449,7 @@ const Query = () => {
             </div>
           </div>
         </section>
-        <ul className="pays px-10 color absolute left-72 top-32 z-0">
+        <ul className="pays px-10 color absolute left-80 top-32 z-0">
           {filteredCountries
             .filter((country) =>
               country.name.common.toLowerCase().includes(sorted.toLowerCase())

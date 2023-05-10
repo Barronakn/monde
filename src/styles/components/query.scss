@@ -128,6 +128,26 @@ $myColor: blue;
   }
 }
 
+@media screen and (min-width: 1500px) and (max-width: 1699px) {
+  .content .pays {
+    left: 480px;
+  }
+
+  .filter {
+    left: 100px;
+  }
+}
+
+@media screen and (min-width: 1400px) and (max-width: 1500px) {
+  .content .pays {
+    left: 400px;
+  }
+
+  .filter {
+    left: 75px;
+  }
+}
+
 @media screen and (max-width: 1330px) {
   .content .pays li .drapeau .drop {
     background-color: transparent;
@@ -215,12 +235,16 @@ $myColor: blue;
     justify-content: space-between;
   }
   .content .filter {
-    top: 80px;
+    top: 150px;
   }
   .content .col-1 .row-3 {
     width: 100%;
     margin-left: 25px;
     margin-right: 25px;
+  }
+  .content .row-1,
+  .content .row-2 {
+    width: 100%;
   }
   .content h1 {
     padding: 15px;
@@ -240,10 +264,6 @@ $myColor: blue;
 }
 
 @media screen and (max-width: 375px) {
-  .content .row-1,
-  .content .row-2 {
-    width: 100%;
-  }
   .content .pays img {
     object-fit: contain;
   }
@@ -252,5 +272,9 @@ $myColor: blue;
 @media screen and (max-width: 320px) {
   .content h1 {
     font-size: 20px;
+  }
+
+  .content .pays img {
+    width: auto;
   }
 }
