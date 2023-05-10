@@ -128,6 +128,13 @@ $myColor: blue;
   }
 }
 
+@media screen and (max-width: 1330px) {
+  .content .pays li .drapeau .drop {
+    background-color: transparent;
+    color: rgb(0, 255, 217);
+  }
+}
+
 @media screen and (max-width: 1200px) {
   .content .pays {
     grid-template-columns: repeat(5, 1fr);
