@@ -183,7 +183,7 @@ $myColor: blue;
     flex-direction: column;
     top: 150px;
     left: 0;
-    right: 0;
+    right: 40px;
     margin: 0 auto;
     padding: 25px;
     width: 88%;
@@ -225,6 +225,10 @@ $myColor: blue;
   .row-3 input {
     width: 100%;
   }
+
+  .content .filter {
+    right: 20px;
+  }
 }
 
 @media screen and (max-width: 615px) {
@@ -265,22 +269,16 @@ $myColor: blue;
 
 @media screen and (max-width: 425px) {
   .content .filter {
-    padding: 5px;
+    padding: 15px;
   }
-  .content .row-5,
-  .content .row-4 {
-    width: 100px;
+  .content .col-2 {
+    flex-wrap: wrap;
   }
-  .content .row-5 input,
-  .content .row-4 input {
-    width: 90px;
+  .btnFilter {
+    margin: auto 30px;
   }
   .content .row-3 input {
     height: 30px;
-  }
-  .content .row-5 input::placeholder,
-  .content .row-4 input::placeholder {
-    font-size: 12px;
   }
   .content .select-btn span {
     font-size: 14px;
@@ -296,11 +294,19 @@ $myColor: blue;
   .content .pays img {
     object-fit: contain;
   }
+  .content .row-5 input::placeholder,
+  .content .row-4 input::placeholder {
+    font-size: 12px;
+  }
 }
 
 @media screen and (max-width: 320px) {
   .content h1 {
     font-size: 20px;
+  }
+
+  .btnFilter {
+    font-size: 14px;
   }
 
   .content .pays img {

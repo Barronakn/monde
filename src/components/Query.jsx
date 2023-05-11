@@ -10,9 +10,11 @@ const Query = () => {
 
   //ToogleContinent
   const [toogle, setToogle] = useState(false);
+  const [continentsOption, setContinentsOption] = useState("Continents");
 
   //ToogleLangue
   const [toogleLang, setToogleLang] = useState(false);
+  const [LangOption, setLangOption] = useState("Langues");
 
   //Recherche par Langue
   const [searchLangue, setSearchLangue] = useState("");
@@ -200,7 +202,7 @@ const Query = () => {
                   onClick={() => setToogle(!toogle)}
                   className="select-btn bg-gray-300 rounded-xl p-2 flex justify-between cursor-pointer"
                 >
-                  <span>Continents</span>
+                  <span>{continentsOption}</span>
                   <img
                     className="arrowdown w-4 h-8 -mt-2"
                     src={ArrowDown}
@@ -219,7 +221,12 @@ const Query = () => {
                       />
                     </div>
                     <div className="flex flex-col mt-2 max-h-24 overflow-y-auto">
-                      <button onClick={() => setFilter("")}>
+                      <button
+                        onClick={() => {
+                          setContinentsOption("Continents");
+                          setFilter("");
+                        }}
+                      >
                         Réinitialiser
                       </button>
                       {continents
@@ -235,7 +242,10 @@ const Query = () => {
                           >
                             <li
                               id={continent}
-                              onClick={(e) => setFilter(e.target.id)}
+                              onClick={(e) => {
+                                setContinentsOption(e.target.innerText);
+                                setFilter(e.target.id);
+                              }}
                               className="p-1"
                             >
                               {continent}
@@ -253,7 +263,7 @@ const Query = () => {
                   }}
                   className="select-btn bg-gray-300 rounded-xl p-2 flex justify-between cursor-pointer"
                 >
-                  <span>Langues</span>
+                  <span>{LangOption}</span>
                   <img
                     className="arrowdown w-4 h-8 -mt-2"
                     src={ArrowDown}
@@ -272,7 +282,14 @@ const Query = () => {
                       />
                     </div>
                     <div className="flex flex-col mt-2 max-h-32 overflow-y-auto">
-                      <button onClick={() => setLang("")}>Réinitialiser</button>
+                      <button
+                        onClick={() => {
+                          setLangOption("Langues");
+                          setFilter("");
+                        }}
+                      >
+                        Réinitialiser
+                      </button>
                       {languages
                         .filter((language) =>
                           language
@@ -286,7 +303,10 @@ const Query = () => {
                           >
                             <li
                               id={language}
-                              onClick={(e) => setLang(e.target.id)}
+                              onClick={(e) => {
+                                setLangOption(e.target.innerText);
+                                setLang(e.target.id);
+                              }}
                               className="p-1"
                             >
                               {language}
@@ -356,7 +376,7 @@ const Query = () => {
                 onClick={() => setToogle(!toogle)}
                 className="select-btn bg-gray-300 rounded-xl p-2 flex justify-between cursor-pointer"
               >
-                <span>Continents</span>
+                <span>{continentsOption}</span>
                 <img
                   className="arrowdown w-4 h-8 -mt-2"
                   src={ArrowDown}
@@ -369,13 +389,22 @@ const Query = () => {
                     <input
                       type="search"
                       value={searchContinent}
-                      onChange={(e) => setSearchContinent(e.target.value)}
+                      onChange={(e) => {
+                        setSearchContinent(e.target.value);
+                      }}
                       placeholder="Trouver un continent"
                       className="bg-gray-300 mt-4 w-52 h-7 p-2 text-black rounded-lg border-input"
                     />
                   </div>
                   <div className="flex flex-col mt-2 max-h-24 overflow-y-auto">
-                    <button onClick={() => setFilter("")}>Réinitialiser</button>
+                    <button
+                      onClick={() => {
+                        setContinentsOption("Continents");
+                        setFilter("");
+                      }}
+                    >
+                      Réinitialiser
+                    </button>
                     {continents
                       .filter((continent) =>
                         continent
@@ -389,7 +418,10 @@ const Query = () => {
                         >
                           <li
                             id={continent}
-                            onClick={(e) => setFilter(e.target.id)}
+                            onClick={(e) => {
+                              setContinentsOption(e.target.innerText);
+                              setFilter(e.target.id);
+                            }}
                             className="p-1"
                           >
                             {continent}
@@ -407,7 +439,7 @@ const Query = () => {
                 }}
                 className="select-btn bg-gray-300 rounded-xl p-2 flex justify-between cursor-pointer"
               >
-                <span>Langues</span>
+                <span>{LangOption}</span>
                 <img
                   className="arrowdown w-4 h-8 -mt-2"
                   src={ArrowDown}
@@ -426,7 +458,14 @@ const Query = () => {
                     />
                   </div>
                   <div className="flex flex-col mt-2 max-h-32 overflow-y-auto">
-                    <button onClick={() => setLang("")}>Réinitialiser</button>
+                    <button
+                      onClick={() => {
+                        setLangOption("Langues");
+                        setLang("");
+                      }}
+                    >
+                      Réinitialiser
+                    </button>
                     {languages
                       .filter((language) =>
                         language
@@ -440,7 +479,10 @@ const Query = () => {
                         >
                           <li
                             id={language}
-                            onClick={(e) => setLang(e.target.id)}
+                            onClick={(e) => {
+                              setLangOption(e.target.innerText);
+                              setLang(e.target.id);
+                            }}
                             className="p-1"
                           >
                             {language}
