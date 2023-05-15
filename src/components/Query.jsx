@@ -29,6 +29,10 @@ const Query = () => {
     top: scrollPosition > 0 ? "0" : "80px",
   };
 
+  const sectionStyle = {
+    top: scrollPosition > 0 ? "50px" : "",
+  };
+
   //ToogleContinent
   const [toogle, setToogle] = useState(false);
   const [continentsOption, setContinentsOption] = useState("Continents");
@@ -172,7 +176,10 @@ const Query = () => {
       </div>
       <div className="cadre flex relative justify-center items-center">
         {handleClick && (
-          <section className="filter py-4 left-12 top-32 w-72 fixed z-30">
+          <section
+            style={sectionStyle}
+            className="filter py-4 left-12 w-72 fixed z-30"
+          >
             <div className="col-1">
               <div className="row-1 mx-6 my-2">
                 <li className="flex flex-col">
