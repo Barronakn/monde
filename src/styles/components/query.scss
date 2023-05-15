@@ -42,7 +42,6 @@ $myColor: blue;
 
 .btnFilter {
   position: fixed;
-  top: 80px;
   display: none;
   margin: 0 auto;
   border: 1px solid blue;
@@ -182,8 +181,6 @@ $myColor: blue;
   .content .filter {
     flex-direction: column;
     top: 150px;
-    left: 0;
-    right: 40px;
     margin: 0 auto;
     padding: 25px;
     width: 88%;
@@ -200,9 +197,11 @@ $myColor: blue;
   .content .filter .col-1 {
     display: flex;
   }
+
   .content .filter .col-2 {
     flex-direction: row;
   }
+
   .content h1 {
     position: relative;
     font-size: 30px;
@@ -225,10 +224,6 @@ $myColor: blue;
   .row-3 input {
     width: 100%;
   }
-
-  .content .filter {
-    right: 20px;
-  }
 }
 
 @media screen and (max-width: 615px) {
@@ -240,6 +235,7 @@ $myColor: blue;
   }
   .content .filter {
     top: 150px;
+    left: 40px;
   }
   .content .col-1 .row-3 {
     width: 100%;
@@ -259,6 +255,9 @@ $myColor: blue;
   .content h1 {
     font-size: 25px;
   }
+  .content .filter {
+    left: 30px;
+  }
 }
 
 @media screen and (max-width: 485px) {
@@ -270,6 +269,7 @@ $myColor: blue;
 @media screen and (max-width: 425px) {
   .content .filter {
     padding: 15px;
+    left: 25px;
   }
   .content .col-2 {
     flex-wrap: wrap;
@@ -297,6 +297,9 @@ $myColor: blue;
   .content .row-5 input::placeholder,
   .content .row-4 input::placeholder {
     font-size: 12px;
+  }
+  .content .filter {
+    left: 20px;
   }
 }
 

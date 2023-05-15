@@ -6,7 +6,28 @@ import ArrowTop from "../assets/arrow-top.svg";
 import ArrowDown from "../assets/down-arrow.svg";
 
 const Query = () => {
+  //voir filtre
   const [handleClick, setHandleClick] = useState(false);
+
+  //top-0 du filtrage au scroll
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScrollFiltre);
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollFiltre);
+    };
+  }, []);
+
+  const handleScrollFiltre = () => {
+    const position = window.scrollY;
+    setScrollPosition(position);
+  };
+
+  const navbarStyle = {
+    top: scrollPosition > 0 ? "0" : "80px",
+  };
 
   //ToogleContinent
   const [toogle, setToogle] = useState(false);
@@ -93,6 +114,7 @@ const Query = () => {
     }
   });
 
+  //Loading & Error
   if (isLoading) {
     return <p className="load">En cours de chargement...</p>;
   }
@@ -101,6 +123,7 @@ const Query = () => {
     return <p>{error.message}</p>;
   }
 
+  // Stockage des langues dans un tableau
   const filteredCountries = data.filter((country) => {
     if (filter !== "") {
       if (country.region !== filter) {
@@ -136,7 +159,10 @@ const Query = () => {
       </h1>
       <div className="flex justify-center items-center">
         <button
-          onClick={() => setHandleClick(!handleClick)}
+          onClick={() => {
+            setHandleClick(!handleClick);
+          }}
+          style={navbarStyle}
           className="btnFilter z-50"
         >
           {handleClick
